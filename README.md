@@ -13,12 +13,13 @@ Technologies used, such as React, TypeScript, Redux, Node.js with Nest.js, Prism
   
   ### Installation
 1. Clone the repository: https://github.com/LaptiiDina/home-assignment.git
-2. run command cd ./apps/client
-3. run npm install
-4.  cd ../server
-5.  run npm install
-6.  cd ../ (go to folder apps)
-7.  docker-compose up --build - run all containers and rebuild them
-8.  docker-compose up - run all containers
-9.  docker-compose down  - stop all containers
-10.  client side locate in http://localhost:4000/
+2. run command:
+  cd ./apps/client
+4. run npm install
+5.  cd ../server
+6.  run npm install
+7.  cd ../ (go to folder apps)
+8.  docker-compose up --build    - run all containers and rebuild them
+9.  docker-compose up     - run all containers (next time)
+11.  client side locate in http://localhost:4000/
+12.   docker-compose down     - stop all containers
