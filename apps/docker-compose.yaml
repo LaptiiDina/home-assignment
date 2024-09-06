@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+  db:
+   container_name: postgres-home-task
+   image: postgres
+   restart: always
+   environment:
+    - POSTGRES_USER=${PRISMA_USERNAME}
+    - POSTGRES_PASSWORD=${PRISMA_PASSWORD}
+    - POSTGRES_DB=${PRISMA_DATABASE}
+
+   volumes: 
+    - ./server/pgdata:/var/lib/postgresql/data
+   ports:
+    - ${PRISMA_PORT}:${PRISMA_PORT}
+
+   networks:
+    - mynetwork
+   healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d ${PRISMA_DATABASE} -U ${PRISMA_USERNAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: ./server
+    command: bash -c "npm run reset-db && npm run start:dev"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - mynetwork
+    ports:
+      - ${API_PORT_SERVER}:${API_PORT_SERVER}
+
+  client:
+    build: ./client  
+    ports:
+      - ${API_PORT_CLIENT}:${API_PORT_CLIENT}  
+    networks:
+      - mynetwork
+    depends_on:
+      - app  
+
+networks:
+  mynetwork:
+    driver: bridge
+
+
