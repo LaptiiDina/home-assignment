@@ -17,7 +17,7 @@ Technologies used, such as React, TypeScript, Redux, Node.js with Nest.js, Prism
 3. run npm install
 4.  cd ../server
 5.  run npm install
-6.  cd ../
+6.  cd ../ (go to folder apps)
 7.  docker-compose up --build - run all containers and rebuild them
 8.  docker-compose up - run all containers
 9.  docker-compose down  - stop all containers
